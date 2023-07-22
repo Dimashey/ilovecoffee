@@ -14,9 +14,9 @@ import {
 import { CoffeesService } from './coffees.service';
 import { CreateCoffeeDto } from './dto/create-coffee.dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto/update-coffee.dto';
+import { ApiForbiddenResponse, ApiTags } from '@nestjs/swagger';
 import { PaginationQueryDto } from 'src/commmon/dto/pagination-query.dto';
 import { Public } from 'src/common/decorators/public.decorator';
-import { ApiForbiddenResponse, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('coffees')
 @Controller('coffees')
@@ -36,7 +36,7 @@ export class CoffeesController {
   }
 
   @Post()
-  @HttpCode(HttpStatus.GONE)
+  @HttpCode(HttpStatus.CREATED)
   create(@Body() createCoffeeDto: CreateCoffeeDto) {
     return this.coffeesService.create(createCoffeeDto);
   }
